@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+font-family: "Albert Sans", sans-serif;
+line-height: 1.5;
+font-weight: 400;
+color-scheme: light dark;
+color: #000000;
+background-color: #f0f0f0;
+--primary: #000000;
+--secondary: #ffffff;
+--tertiary: #767676;
+--palette1: #3c1518;
+--palette2: #69140e;
+--palette3: #a44200;
+--selection-background-color: #f5f5f5;
+--selection-color: #000000;
+--179wema: color(display-p3 .22805077373825555 1 0);
+--border: #ffffff14;
+}
+
+/* link defaults (optional; Tailwind also styles via classes) */
+a {
+font-weight: 500;
+color: white;
+text-decoration: inherit;
+}
+a:hover {
+color: #535bf2;
+}
+
+body {
+margin: 0;
+display: flex;
+place-items: center;
+min-width: 320px;
+min-height: 100vh;
+scroll-behavior: smooth;
+color: #000000;
+}
+
+h1 {
+font-size: 3.2em;
+line-height: 1.1;
+}
