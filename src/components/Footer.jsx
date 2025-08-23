@@ -1,89 +1,40 @@
-import { useEffect, useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import * as React from "react"
 
-function useClocks() {
-  const [now, setNow] = useState(() => new Date());
+export default function Footer({
+  text = "ui",
+  words = ["zen", "zen"]
+}) {
 
-  useEffect(() => {
-    const id = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(id);
-  }, []);
+  const [index, setIndex] = React.useState(0)
 
-  const utc = useMemo(
-    () =>
-      now.toLocaleString("en-GB", {
-        timeZone: "UTC",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-      }),
-    [now]
-  );
-
-  const ist = useMemo(
-    () =>
-      now.toLocaleString("en-IN", {
-        timeZone: "Asia/Kolkata",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-        hour12: false,
-      }),
-    [now]
-  );
-
-  // Local status based on the user's local time
-  const hourLocal = now.getHours();
-  const isDay = hourLocal >= 7 && hourLocal < 23; // 07:00–22:59 is "day" and 23:00–6:59 is "night"
-  const status = isDay ? "Online" : "Offline";
-
-  return { utc, ist, status, isDay };
-}
-
-export default function Footer() {
-  const { utc, ist, status, isDay } = useClocks();
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex(prevIndex => (prevIndex + 1) % words.length)
+    }, 5000)
+    // Clean up interval on unmount
+    return () => clearInterval(interval)
+  }, [])
 
   return (
-    <footer className="px-3 md:px-3 py-5 text-sm">
-      <div className="flex flex-col md:flex-row items-center justify-center md:items-center gap-6">
-        {/* Time Block */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
-          <div className="flex items-center gap-2">
-            <span>UTC</span>
-            <span className="h-[1px] w-4 bg-white/15" />
-            <time className="tabular-nums">{utc}</time>
-          </div>
-
-          <div className="hidden sm:block h-4 w-[1px] bg-white/10" />
-
-          <div className="flex items-center gap-2">
-            <span>IST</span>
-            <span className="h-[1px] w-4 bg-white/15" />
-            <time className="tabular-nums">{ist}</time>
-          </div>
-        </div>
-  
-
-          <div className="hidden md:block h-4 w-[1px] bg-white/10" />
-
-          {/* Email */}
-          {/* <a
-            href="mailto:hi@example.com"
-            className="underline underline-offset-4 hover:text-white"
+    <footer className="px-10 md:px-10 text-sm w-full bg-fuchsia-400 flex justify-center items-center py-20">
+      <div className="text-center sm:text-4xl font-bold tracking-tighter md:text-6xl md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5"
+        style={{ fontFamily: "Pixelify Sans", fontSize: "200px" }}>
+        {text}{' '}
+        <AnimatePresence mode="wait">
+          <motion.p
+            className=""
+            key={words[index]}
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 40 }}
+            viewport={{ once: true, amount: 0.6 }} // show when 60% in view, only once
+            transition={{ duration: 1 }}
           >
-            hi@example.com
-          </a> */}
-
-          <div className="hidden md:block h-4 w-[1px] bg-white/10" />
-
-          {/* Copyright */}
-          <span>©2025</span>
-        </div>
+            {words[index]}
+          </motion.p>
+        </AnimatePresence>
+      </div>
     </footer>
   );
 }

@@ -5,14 +5,16 @@ import './index.css'
 import RootLayout from './Layout/RootLayout.jsx'
 import LandingPage from './Pages/LandingPage.jsx'
 import Contact from './components/Contact.jsx'
+import Components from './Pages/Components.jsx';
 
 const router = createBrowserRouter([
   {
-    path: '/uizen',
+    path: '/',
     element: <RootLayout />,          // Persistent header & footer
     children: [
       { index: true, element: <LandingPage /> },        // "/"
-      { path: 'contact', element: <Contact /> }, // "/contact"
+      { path: 'contact', element: <Contact /> },
+      { path: 'components', element: <Components /> }, // "/contact"
     ],
   },
 ]);

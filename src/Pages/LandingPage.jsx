@@ -1,36 +1,100 @@
 
-import { useEffect, useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import * as React from 'react';
+import { motion, useInView } from "framer-motion";
 import useLenis from "../hooks/useLenis";
+import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer'
 
 export default function LandingPage() {
+  const navigate = useNavigate();
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true });
   useLenis();
   return (
-    <section className="flex justify-center items-center">
+    <section className="flex justify-center min-h-screen items-center flex-col">
       {/* HERO */}
-      <main className="relative text-primary min-h-screen flex flex-col md:w-[1180px] py-15 sm:w-[440px]">
+      <main className="relative text-primary flex flex-col w-full py-20">
 
-        <section className="px-2 md:px-2">
-          <motion.div
-            className="flex flex-wrap gap-x-4 gap-y-2 text-7xl"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            variants={{
-              hidden: {},
-              show: {
-                transition: {
-                  staggerChildren: 0.05,
-                },
-              },
-            }}
-          >A minimalist UI kit that keeps developers in flow and products in harmony.
-          </motion.div>
+        {/* main text */}
+        <section className="px-20 py-10 md:px-20 md:py-10 gap-5 flex flex-col">
+          <div>
+            <motion.div
+              ref={ref}
+              initial={{ filter: 'blur(20px)', opacity: 0 }}
+              animate={isInView ? { filter: 'blur(0px)', opacity: 1 } : {}}
+              transition={{ duration: 1.2 }}
+              className="text-xl text-start sm:text-4xl font-medium  md:text-6xl md:leading-[4rem]"
+            >
+              A minimalist UI kit that keeps developers in flow and products in harmony.
+            </motion.div>
+          </div>
+
+          <div className='flex flex-col'>
+            <motion.h3
+              ref={ref}
+              initial={{ filter: 'blur(20px)', opacity: 0 }}
+              animate={isInView ? { filter: 'blur(0px)', opacity: 1 } : {}}
+              transition={{ duration: 1.2 }}
+              className='text-gray-500 font-medium'>The path of least resistance to great UI.</motion.h3>
+            <motion.h3
+              ref={ref}
+              initial={{ filter: 'blur(20px)', opacity: 0 }}
+              animate={isInView ? { filter: 'blur(0px)', opacity: 1 } : {}}
+              transition={{ duration: 1.2 }}
+              className='text-gray-500 font-medium'>Find your flow state for UI.</motion.h3>
+          </div>
+
+          <div className='flex flex-row'>
+            <motion.button
+              ref={ref}
+              initial={{ filter: 'blur(20px)', opacity: 0 }}
+              animate={isInView ? { filter: 'blur(0px)', opacity: 1 } : {}}
+              transition={{ duration: 1.2 }}
+              onClick={() => navigate('/components')}
+              className='bg-black rounded-full px-4 py-2 font-medium text-white cursor-pointer hover:bg-black/70'>
+              Browse Components
+            </motion.button>
+          </div>
         </section>
 
+        {/* line break */}
+        <div className='h-[1px] bg-[#e8e8e8e2] visible'></div>
+
+        <section className='px-20 py-10 md:px-20 md:py-10 gap-5 flex flex-col'>
+          <div className='flex flex-col items-start'>
+            <h2 className='text-gray-500 font-medium'>Harmony for your UI.</h2>
+            <h2 className='text-gray-500 font-medium'>A minimalist design  <br />  system foundation with maximal clarity and flow.</h2>
+          </div>
+
+          {/* available components in numbers */}
+          <div className='flex flex-row gap-30'>
+            <span className='flex flex-col'>
+              <p className='text-9xl font-medium'>30+</p>
+              <p className='text-xl text-gray-500 font-medium'>components</p>
+            </span>
+            <span className='flex flex-col'>
+              <p className='text-9xl font-medium'>10+</p>
+              <p className='text-xl text-gray-500 font-medium'>text animation</p>
+            </span>
+            <span className='flex flex-col'>
+              <p className='text-9xl font-medium'>20+</p>
+              <p className='text-xl text-gray-500 font-medium'>buttons</p>
+            </span>
+          </div>
+        </section>
+
+        {/* line break */}
+        <div className='h-[1px] bg-[#e8e8e8e2] visible'></div>
+
+        {/* next */}
+        
+
+        <div className='w-max-full'>
+          {/* <MotionOneText/> */}
+        </div>
       </main>
+
+      <Footer />
     </section>
   );
 }
-
-// how many visitors came through my profile
