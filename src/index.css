@@ -26,22 +26,10 @@
     background-color:#ed6bff;
 }
 
-/* link defaults (optional; Tailwind also styles via classes) */
-a {
-    font-weight: 500;
-    color: white;
-    text-decoration: inherit;
-}
-
-a:hover {
-    color: #535bf2;
-}
-
 body {
     margin: 0;
     cursor: auto;
     padding: 10px;
-    display: flex;
     min-height: 100vh;
     scroll-behavior: smooth;
     color: #000000;
