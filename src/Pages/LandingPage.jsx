@@ -17,13 +17,13 @@ export default function LandingPage() {
 
         {/* main text */}
         <section className="px-20 py-10 md:px-20 md:py-10 gap-5 flex flex-col">
-          <div>
+          <div className='flex p-2 bg-[var(--bg)] text-[var(--fg)]'>
             <motion.div
               ref={ref}
               initial={{ filter: 'blur(20px)', opacity: 0 }}
               animate={isInView ? { filter: 'blur(0px)', opacity: 1 } : {}}
               transition={{ duration: 1.2 }}
-              className="text-xl text-start sm:text-4xl font-medium  md:text-6xl md:leading-[4rem]"
+              className="text-xl text-start sm:text-4xl font-medium  md:text-6xl md:leading-[4rem] dark:bg-[var(--bg)] dark:text-[var(--fg)]"
             >
               A minimalist UI kit that keeps developers in flow and products in harmony.
             </motion.div>
@@ -51,7 +51,7 @@ export default function LandingPage() {
               animate={isInView ? { filter: 'blur(0px)', opacity: 1 } : {}}
               transition={{ duration: 1.2 }}
               onClick={() => navigate('/components')}
-              className='bg-black rounded-full px-4 py-2 font-medium text-white cursor-pointer hover:bg-black/70'>
+              className='rounded-lg px-4 py-2 font-medium cursor-pointer bg-[var(--btn-bg)] text-[var(--btn-fg)] hover:opacity-90'>
               Browse Components
             </motion.button>
           </div>

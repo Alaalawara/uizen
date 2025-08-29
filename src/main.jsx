@@ -9,11 +9,17 @@ import LandingPage from "./Pages/LandingPage.jsx";
 import Contact from "./components/Contact.jsx";
 
 // Components area
-import Threedbutton from "./components/buttons/3d-button.jsx";
-import HovercardDemo from "./components/cards/HovercardDemo.jsx";
+//buttons
+import ButtonPage from "./components/buttons/ButtonPage.jsx";
+import ThreedButtonPage from "./components/buttons/3dbuttonPage.jsx";
+import OnTapButtonPage from "./components/buttons/OntapButtonPage.jsx";
 
-import ComponentsShell from "./Pages/ComponentsShell.jsx";
-import ComponentsShowcase from "./Pages/ComponentsShowcase.jsx";
+//cards
+import SimpleCard from "./components/cards/SimpleCard.jsx";
+import Hovercard from "./components/cards/Hovercard.jsx";
+
+import ComponentsLayout from "./Pages/componentslayout.jsx";
+import Components from "./components/components.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,11 +31,21 @@ const router = createBrowserRouter([
 
       {
         path: "components",
-       element: <ComponentsShell />,   // sidebar + Outlet
+       element: <ComponentsLayout />,   // sidebar + Outlet
   children: [
-    { index: true, element: <ComponentsShowcase /> }, // grid listing
-    { path: "buttons/3d", element: <Threedbutton /> }, // Visualizer
-    { path: "cards/hover", element: <HovercardDemo /> },
+    { index: true, element: <Components  /> }, // grid listing
+
+    //buttons
+    { path: "buttons/button", element: <ButtonPage /> },
+    { path: "buttons/3d-button", element: <ThreedButtonPage /> },
+    { path: "buttons/ontapbutton", element: <OnTapButtonPage /> },
+
+
+    //cards
+    { path: "cards/simplecard", element: <SimpleCard /> },
+    { path: "cards/hovercard", element: <Hovercard /> },
+
+
         ],
       },
     ],
