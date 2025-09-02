@@ -65,12 +65,20 @@ function Sidebar() {
             </NavLink>
 
             <NavLink
-              to="/cards-2"
+              to="/components/cards/hovercard"
               className={({ isActive }) =>
                 `${base} ${isActive ? active : hover}`
               }
             >
-              Cards 2
+              Hover Card
+            </NavLink>
+            <NavLink
+              to="/components/cards/BlockTextCard"
+              className={({ isActive }) =>
+                `${base} ${isActive ? active : hover}`
+              }
+            >
+              Block Text Card
             </NavLink>
           </li>
 

@@ -10,7 +10,7 @@ function Components() {
             <h2 className='font-bold tracking-tight'>Components</h2>
             <p>Here you can find all the components available in the library.<br/> We are working on adding more components.</p>
             <div className='grid grid-cols-4 gap-10'>
-             <Link hre to="/components/buttons/3d" className='font-bold text-base w-fit px-2 py-1 rounded-lg hover:underline underline-offset-4'>
+             <Link hre to="/components/buttons/button" className='font-bold text-base w-fit px-2 py-1 rounded-lg hover:underline underline-offset-4'>
             Buttons
             </Link>
              <Link hre to="/" className='font-bold text-base w-fit px-2 py-1 rounded-lg hover:underline underline-offset-4'>

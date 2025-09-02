@@ -1,10 +1,5 @@
-import { useState, useRef } from "react";
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useSpring,
-} from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const Code1 = `import { motion } from 'framer-motion';
 
@@ -23,41 +18,7 @@ function HoverCard() {
 }
 `;
 
-const Code2 = `import { motion } from 'framer-motion';
-
-function OntapButton() {
-  return (
-         <span className='border-b-6 border-[#886372] rounded-b-2xl'>
-            <motion.button
-                whileHover={{ y: 3 }}
-                whileTap={{ y: [0, 3] }}
-                className="inline-flex items-center md:text-3xl sm:text-3xl justify-center cursor-pointer rounded-xl border-2 border-[#886372] bg-[#f9c4d2] text-[#886372] font-medium px-4 py-1.5 text-sm"
-            >
-                Button
-            </motion.button>
-         </span>
-  );
-}
-`;
-
-const Code3 = `import { motion } from 'framer-motion';
-
-function OntapButton() {
-  return (
-         <span className='border-b-6 border-[#780000] rounded-b-2xl'>
-            <motion.button
-                whileHover={{ y: 2 }}
-                whileTap={{ y: [0, 2] }}
-                className="inline-flex items-center md:text-3xl sm:text-3xl justify-center cursor-pointer rounded-xl border-2 border-[#780000] bg-[#CD201F] text-white font-medium px-4 py-1.5 text-sm"
-            >
-                Subscribe
-            </motion.button>
-        </span>
-  );
-}
-`;
-
-export default function HoverCardPage() {
+export default function BlockTextCardPage() {
   const [tab, setTab] = useState('preview');
   const [copied, setCopied] = useState(false);
 
@@ -98,7 +59,7 @@ export default function HoverCardPage() {
           <div className="rounded-lg border border-foreground max-w-[800px] h-[400px] min-h-[400px] max-h-[400px]">
             <div className="relative w-full h-[250px]">
               <div className="absolute inset-0 grid">
-                <Example />
+                <Example/>
               </div>
             </div>
           </div>
@@ -146,89 +107,119 @@ export default function HoverCardPage() {
 }
 
 
-//component code
-
-
 const Example = () => {
   return (
-    <div className="grid w-full place-content-center bg-gradient-to-br from-indigo-500 to-violet-500 px-4 py-12 text-slate-900">
-      <TiltCard />
+    <div className="flex items-center justify-center bg-neutral-100 py-16 text-neutral-800">
+      <BlockInTextCard
+        tag="/ Support"
+        text={
+          <>
+            <strong>Have questions?</strong> We'd love to help! Contact support
+            for any issue you may face.
+          </>
+        }
+        examples={[
+          "Does your product work for SMBs?",
+          "Can I pause my membership without losing my data?",
+          "How does seat based pricing work?",
+          "What's the meaning of life?",
+        ]}
+      />
     </div>
   );
 };
 
-const ROTATION_RANGE = 32.5;
-const HALF_ROTATION_RANGE = 32.5 / 2;
+const BlockInTextCard = ({ tag, text, examples }) => {
+  return (
+    <div className="w-full max-w-xl space-y-6">
+      <div>
+        <p className="text-sm font-light uppercase">{tag}</p>
+        <hr className="border-neutral-700" />
+      </div>
+      <p className="max-w-lg text-xl leading-relaxed">{text}</p>
+      <div>
+        <Typewrite examples={examples} />
+        <hr className="border-neutral-300" />
+      </div>
+      <button className="w-full rounded-full border border-neutral-950 py-2 text-sm font-medium transition-colors hover:bg-neutral-950 hover:text-neutral-100">
+        Contact Support
+      </button>
+    </div>
+  );
+};
 
-const TiltCard = () => {
-  const ref = useRef(null);
+const LETTER_DELAY = 0.025;
+const BOX_FADE_DURATION = 0.125;
 
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+const FADE_DELAY = 5;
+const MAIN_FADE_DURATION = 0.25;
 
-  const xSpring = useSpring(x);
-  const ySpring = useSpring(y);
+const SWAP_DELAY_IN_MS = 5500;
 
-  const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
+const Typewrite = ({ examples }) => {
+  const [exampleIndex, setExampleIndex] = useState(0);
 
-  const handleMouseMove = (e) => {
-    if (!ref.current) return [0, 0];
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setExampleIndex((pv) => (pv + 1) % examples.length);
+    }, SWAP_DELAY_IN_MS);
 
-    const rect = ref.current.getBoundingClientRect();
-
-    const width = rect.width;
-    const height = rect.height;
-
-    const mouseX = (e.clientX - rect.left) * ROTATION_RANGE;
-    const mouseY = (e.clientY - rect.top) * ROTATION_RANGE;
-
-    const rX = (mouseY / height - HALF_ROTATION_RANGE) * -1;
-    const rY = mouseX / width - HALF_ROTATION_RANGE;
-
-    x.set(rX);
-    y.set(rY);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transformStyle: "preserve-3d",
-        transform,
-      }}
-      className="relative h-96 w-72 rounded-xl bg-gradient-to-br from-indigo-300 to-violet-300"
-    >
-      <div
-        style={{
-          transform: "translateZ(75px)",
-          transformStyle: "preserve-3d",
-        }}
-        className="absolute inset-4 grid place-content-center rounded-xl bg-white shadow-lg"
-      >
-        {/* <FiMousePointer
-          style={{
-            transform: "translateZ(75px)",
-          }}
-          className="mx-auto text-4xl"
-        /> */}
-
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M400-40v-360H40l400-400h360v360L400-40Zm240-353 80-80v-247H473l-80 80h247v247ZM480-233l80-80v-247H313l-80 80h247v247Z" /></svg>
-        <p
-          style={{
-            transform: "translateZ(50px)",
-          }}
-          className="text-center text-2xl font-bold"
-        >
-          HOVER ME
-        </p>
-      </div>
-    </motion.div>
+    <p className="mb-2.5 text-sm font-light uppercase">
+      <span className="inline-block size-2 bg-neutral-950" />
+      <span className="ml-3">
+        EXAMPLE:{" "}
+        {examples[exampleIndex].split("").map((l, i) => (
+          <motion.span
+            initial={{
+              opacity: 1,
+            }}
+            animate={{
+              opacity: 0,
+            }}
+            transition={{
+              delay: FADE_DELAY,
+              duration: MAIN_FADE_DURATION,
+              ease: "easeInOut",
+            }}
+            key={`${exampleIndex}-${i}`}
+            className="relative"
+          >
+            <motion.span
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              transition={{
+                delay: i * LETTER_DELAY,
+                duration: 0,
+              }}
+            >
+              {l}
+            </motion.span>
+            <motion.span
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                delay: i * LETTER_DELAY,
+                times: [0, 0.1, 1],
+                duration: BOX_FADE_DURATION,
+                ease: "easeInOut",
+              }}
+              className="absolute bottom-[3px] left-[1px] right-0 top-[3px] bg-neutral-950"
+            />
+          </motion.span>
+        ))}
+      </span>
+    </p>
   );
 };
