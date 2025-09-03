@@ -33,7 +33,7 @@ export default function BlockTextCardPage() {
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4 items-start">
-        <h2 className="font-bold tracking-tight text-2xl">On tap Button</h2>
+        <h2 className="font-bold tracking-tight text-2xl">Block Text Card</h2>
         <p className="text-foreground">Interactive on tap button built with Framer Motion.</p>
       </div>
 
@@ -66,7 +66,7 @@ export default function BlockTextCardPage() {
         ) : (
           <div className="rounded-lg border h-[400px] min-h-[400px] max-h-[400px] border-foreground max-w-[800px] w-[800px] bg-secondary overflow-hidden">
             <div className="flex items-center justify-between border-b border-foreground px-3 py-2">
-              <span className="text-xs font-medium text-foreground">3d-button.jsx</span>
+              <span className="text-xs font-medium text-foreground">Block-Text-card.jsx</span>
               <button
                 type="button"
                 onClick={copy}
@@ -109,7 +109,7 @@ export default function BlockTextCardPage() {
 
 const Example = () => {
   return (
-    <div className="flex items-center justify-center bg-neutral-100 py-16 text-neutral-800">
+    <div className="flex items-center justify-center py-16 text-neutral-800">
       <BlockInTextCard
         tag="/ Support"
         text={
@@ -131,17 +131,17 @@ const Example = () => {
 
 const BlockInTextCard = ({ tag, text, examples }) => {
   return (
-    <div className="w-full max-w-xl space-y-6">
+    <div className="w-full max-w-xl space-y-9">
       <div>
-        <p className="text-sm font-light uppercase">{tag}</p>
-        <hr className="border-neutral-700" />
+        <p className="text-sm font-light uppercase text-[var(--fg)]">{tag}</p>
+        <hr className="border-foreground" />
       </div>
-      <p className="max-w-lg text-xl leading-relaxed">{text}</p>
+      <p className="max-w-lg text-xl leading-relaxed text-[var(--fg)]">{text}</p>
       <div>
         <Typewrite examples={examples} />
-        <hr className="border-neutral-300" />
+        <hr className="border-foreground" />
       </div>
-      <button className="w-full rounded-full border border-neutral-950 py-2 text-sm font-medium transition-colors hover:bg-neutral-950 hover:text-neutral-100">
+      <button className="w-full rounded-lg border border-neutral-950 py-2 text-sm font-medium transition-colors bg-[var(--btn-bg)] text-[var(--btn-fg)] hover:opacity-80">
         Contact Support
       </button>
     </div>
@@ -170,7 +170,7 @@ const Typewrite = ({ examples }) => {
   return (
     <p className="mb-2.5 text-sm font-light uppercase">
       <span className="inline-block size-2 bg-neutral-950" />
-      <span className="ml-3">
+      <span className="ml-3 text-[var(--fg)]">
         EXAMPLE:{" "}
         {examples[exampleIndex].split("").map((l, i) => (
           <motion.span

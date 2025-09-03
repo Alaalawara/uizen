@@ -56,12 +56,12 @@ function Sidebar() {
           <li className="flex flex-col gap-2">
             <p className="text-foreground font-bold text-xl px-2">Cards</p>
             <NavLink
-              to="/cards-1"
+              to="/components/cards/simplecard"
               className={({ isActive }) =>
                 `${base} ${isActive ? active : hover}`
               }
             >
-              Cards 1
+              Simple Card
             </NavLink>
 
             <NavLink

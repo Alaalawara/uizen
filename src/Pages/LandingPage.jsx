@@ -51,7 +51,7 @@ export default function LandingPage() {
               animate={isInView ? { filter: 'blur(0px)', opacity: 1 } : {}}
               transition={{ duration: 1.2 }}
               onClick={() => navigate('/components')}
-              className='rounded-lg px-4 py-2 font-medium cursor-pointer bg-[var(--btn-bg)] text-[var(--btn-fg)] hover:opacity-90'>
+              className='rounded-lg px-4 py-2 font-medium cursor-pointer bg-[var(--btn-bg)] text-[var(--btn-fg)] hover:opacity-80'>
               Browse Components
             </motion.button>
           </div>

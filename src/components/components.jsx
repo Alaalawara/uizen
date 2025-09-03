@@ -13,7 +13,7 @@ function Components() {
              <Link hre to="/components/buttons/button" className='font-bold text-base w-fit px-2 py-1 rounded-lg hover:underline underline-offset-4'>
             Buttons
             </Link>
-             <Link hre to="/" className='font-bold text-base w-fit px-2 py-1 rounded-lg hover:underline underline-offset-4'>
+             <Link hre to="/components/cards/simplecard" className='font-bold text-base w-fit px-2 py-1 rounded-lg hover:underline underline-offset-4'>
             Cards
             </Link>
              <Link hre to="/" className='font-bold text-base w-fit px-2 py-1 rounded-lg hover:underline underline-offset-4'>

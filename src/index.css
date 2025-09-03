@@ -25,6 +25,8 @@
     --color-secondary: oklch(97% 0 0);
 }
 
+
+
 ::selection {
     background-color: var(--fg);
     color: var(--bg);

@@ -15,7 +15,7 @@ import ThreedButtonPage from "./components/buttons/3dbuttonPage.jsx";
 import OnTapButtonPage from "./components/buttons/OntapButtonPage.jsx";
 
 //cards
-import SimpleCard from "./components/cards/SimpleCard.jsx";
+import SimpleCardPage from "./components/cards/SimpleCardPage.jsx";
 import HoverCardPage from "./components/cards/Hovercard.jsx";
 import BlockTextCardPage from "./components/cards/BlockTextCards.jsx";
 
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
 
 
     //cards
-    { path: "cards/simplecard", element: <SimpleCard /> },
+    { path: "cards/simplecard", element: <SimpleCardPage /> },
     { path: "cards/hovercard", element: <HoverCardPage /> },
     { path: "cards/BlockTextCard", element: <BlockTextCardPage /> },
 
