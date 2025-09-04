@@ -180,7 +180,7 @@ export default function HoverCardPage() {
                 {copied ? 'Copied!' : 'Copy'}
               </button>
             </div>
-            <pre className="max-w-[800px] overflow-x-auto  p-3 text-sm dark:bg-[var(--bg)] dark:text-[var(--fg)]">
+            <pre className="max-w-[800px] overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none][scrollbar-width:none]  p-3 text-sm dark:bg-[var(--bg)] dark:text-[var(--fg)]">
               <code1>{Code1}</code1>
             </pre>
           </div>
