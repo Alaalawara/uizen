@@ -6,7 +6,7 @@ function Sidebar() {
   const active = 'bg-secondary text-black';
 
   return (
-    <div className="w-[300px] h-screen overflow-hidden">
+    <div className="w-[300px] h-screen">
       <nav>
         <ul className="list-none flex flex-col justify-center gap-10 overflow-hidden">
           <li className="flex flex-col gap-2">
@@ -19,6 +19,27 @@ function Sidebar() {
                className={`${base} ${hover}`}>
               Twitter / X
             </a>
+          </li>
+
+          <li className="flex flex-col gap-2">
+            <p className="text-foreground font-bold text-xl px-2">Badges</p>
+            <NavLink
+              to="/components/badge"
+              className={({ isActive }) =>
+                `${base} ${isActive ? active : hover}`
+              }
+              end
+            >
+              Simple Badge
+            </NavLink>
+             <NavLink
+              to="/components/animatedbadge"
+              className={({ isActive }) =>
+                `${base} ${isActive ? active : hover}`
+              }
+            >
+              Animated Badge
+            </NavLink>
           </li>
 
           <li className="flex flex-col gap-2">
@@ -73,12 +94,20 @@ function Sidebar() {
               Hover Card
             </NavLink>
             <NavLink
-              to="/components/cards/BlockTextCard"
+              to="/components/cards/blocktextCard"
               className={({ isActive }) =>
                 `${base} ${isActive ? active : hover}`
               }
             >
               Block Text Card
+            </NavLink>
+            <NavLink
+              to="/components/cards/stackcards"
+              className={({ isActive }) =>
+                `${base} ${isActive ? active : hover}`
+              }
+            >
+              Stack Cards
             </NavLink>
           </li>
 
@@ -90,7 +119,7 @@ function Sidebar() {
               }
               style={{ color: 'var(--dark)', textDecoration: 'none' }}
             >
-              Create user
+              bugs / errors
             </NavLink>
           </li>
         </ul>

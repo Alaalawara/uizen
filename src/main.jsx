@@ -19,6 +19,11 @@ import OnTapButtonPage from "./components/buttons/OntapButtonPage.jsx";
 import SimpleCardPage from "./components/cards/SimpleCardPage.jsx";
 import HoverCardPage from "./components/cards/Hovercard.jsx";
 import BlockTextCardPage from "./components/cards/BlockTextCards.jsx";
+import StackCardsPage from "./components/cards/StackCardsPage.jsx";
+
+//badge
+import BadgePage from "./components/badges/Badge.jsx";
+import AnimatedBadgePage from "./components/badges/AnimatedBadge.jsx";
 
 import ComponentsLayout from "./Pages/componentslayout.jsx";
 import Components from "./components/components.jsx";
@@ -41,6 +46,10 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <Components /> }, // grid listing
 
+          //badge
+           { path: "badge", element: <BadgePage /> },
+           { path: "animatedbadge", element: <AnimatedBadgePage /> },
+
           //buttons
           { path: "buttons/button", element: <ButtonPage /> },
           { path: "buttons/3d-button", element: <ThreedButtonPage /> },
@@ -50,7 +59,11 @@ const router = createBrowserRouter([
           //cards
           { path: "cards/simplecard", element: <SimpleCardPage /> },
           { path: "cards/hovercard", element: <HoverCardPage /> },
-          { path: "cards/BlockTextCard", element: <BlockTextCardPage /> },
+          { path: "cards/blocktextCard", element: <BlockTextCardPage /> },
+          { path: "cards/stackcards", element: <StackCardsPage /> },
+
+
+
           { path: "*", element: <NotFound /> },
         ],
       },

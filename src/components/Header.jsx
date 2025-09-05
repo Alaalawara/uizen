@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className="w-full flex py-2 border-b-1 border-[#e8e8e8e2] visible justify-between">
       <Link>
-        <h2 className='text-black dark:bg-[var(--bg)] dark:text-[var(--fg)]' style={{ fontFamily: "Pixelify Sans" }}>uizen</h2>
+        <h2 className='text-black dark:bg-[var(--bg)] dark:text-[var(--fg)]' style={{ fontFamily: "Pixelify Sans"}}>uizen</h2>
       </Link>
       <ThemeToggle/>
     </header>
